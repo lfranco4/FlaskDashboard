@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .start-button {
+      padding: 20px 40px;
+      font-size: 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .start-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>Remote Server Interaction</header>
+  <main>
+      <div id="interface">
+        <button class="start-button"
+                hx-post="/start"
+                hx-target="#interface"
+                hx-swap="innerHTML">
+          Start Node
+        </button>
+      </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<h2>Output</h2>
+<pre>{{ output }}</pre>
+
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.option-button form button {
+  padding: 20px 40px;
+  font-size: 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.option-button form button:hover {
+  background-color: #0056b3;
+}
+
+.exit-form {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* makes sure it's on top */
+}
+
+.exit-button {
+  padding: 20px 40px;
+  font-size: 24px;
+  background-color: #fb6d6d;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.exit-button:hover {
+  background-color: #ff4545;
+}
+</style>
+
+<div class="option-button">
+  {% for opt in options %}
+    <form hx-post="/send" hx-target="#interface" hx-swap="innerHTML" style="display:inline;">
+      <input type="hidden" name="selection" value="{{ opt.split()[0] }}">
+      <button class="submit">{{ opt }}</button>
+    </form>
+  {% endfor %}
+</div>
+
+<form hx-post="/exit" hx-target="#interface" hx-swap="innerHTML" class="exit-form">
+  <button class="exit-button" type="submit">Exit</button>
+</form>
