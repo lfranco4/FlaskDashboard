@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request
 import paramiko
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -15,11 +15,17 @@ def start():
     global ssh_client, ssh_channel
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect("remote_host", username="user", key_filename="/path/to/key")
+    ssh_client.connect(
+        "remote_host",
+        username="user",
+        key_filename="/path/to/key",
+        passphrase="passphrase")
 
     # Create interactive shell
     ssh_channel = ssh_client.invoke_shell()
-    ssh_channel.send("cd /remote/path && ./start_app\n")
+    ssh_channel.send("cd /remote/path\n")
+    import time; time.sleep(1)
+    ssh_channel.send("./start_app\n")
 
     # Small delay and fetch initial output
     import time; time.sleep(1)

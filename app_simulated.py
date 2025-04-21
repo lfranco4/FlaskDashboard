@@ -25,10 +25,10 @@ def send():
     # Simulated responses
     if fake_shell["state"] == "main_menu":
         if selection == "1.":
-            output = "You chose A.\nNext:\na) Sub A1\nb) Sub A2"
+            output = "You chose A.\nNext:\na) Sub A1\nb) Sub A2\nc) Sub A3\nd) Sub A4\ne) Sub A5\nf) Sub A6\ng) Sub A7"
             fake_shell["state"] = "sub_menu_a"
         elif selection == "2.":
-            output = "You chose B.\nNext:\na) Sub B1\nb) Sub B2"
+            output = "You chose B.\nNext:\na) Sub B1\nb) Sub B2\nc) Sub B3\nd) Sub B4\ne) Sub B5\nf) Sub B6\ng) Sub B7"
             fake_shell["state"] = "sub_menu_b"
         else:
             output = "Invalid selection.\n1. Option A\n2. Option B"
